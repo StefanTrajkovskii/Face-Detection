@@ -18,16 +18,21 @@ while True:
         break
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=4)
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=5)
 
-    # Draw a rectangle around each face
+    # Draw a rectangle around each detected face
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+
+    # Count the number of faces detected and overlay the count on the frame
+    face_count = len(faces)
+    cv2.putText(frame, f"Faces: {face_count}", (10, 30), 
+                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
     # Display the resulting frame
     cv2.imshow('Live Face Detector', frame)
 
-    # s to snapshot and q to close
+    # Press 's' to save a snapshot, or 'q' to exit
     key = cv2.waitKey(1) & 0xFF
     if key == ord('s'):
         cv2.imwrite("snapshot.jpg", frame)
@@ -35,9 +40,5 @@ while True:
     elif key == ord('q'):
         break
 
-
 cap.release()
 cv2.destroyAllWindows()
-
-
-# python face_detector.py - command to run
