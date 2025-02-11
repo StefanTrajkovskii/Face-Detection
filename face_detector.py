@@ -1,6 +1,5 @@
-import cv2
+import cv2 # type: ignore
 
-# Replace 'image.jpg' with the path to your image file
 image = cv2.imread('yuki.jpg')
 
 if image is None:
