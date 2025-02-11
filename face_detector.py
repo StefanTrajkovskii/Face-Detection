@@ -27,9 +27,17 @@ while True:
     # Display the resulting frame
     cv2.imshow('Live Face Detector', frame)
 
-    # Press 'q' to exit the loop and close the window
-    if cv2.waitKey(1) == ord('q'):
+    # s to snapshot and q to close
+    key = cv2.waitKey(1) & 0xFF
+    if key == ord('s'):
+        cv2.imwrite("snapshot.jpg", frame)
+        print("Snapshot saved!")
+    elif key == ord('q'):
         break
+
 
 cap.release()
 cv2.destroyAllWindows()
+
+
+# python face_detector.py - command to run
