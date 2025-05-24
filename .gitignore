@@ -1,5 +1,7 @@
 # Image files
 Samurai.jpg
+snapshot_*.jpg
+*.jpg
 
 # Python
 __pycache__/
